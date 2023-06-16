@@ -1,10 +1,12 @@
 import { useState } from 'react'
 
 
-const BlogForm = ({createBlog}) => {
+const BlogForm = ({ createBlog, user }) => {
     const [title, setTitle] = useState('')
     const [author, setAuthor] = useState('')
     const [url, setUrl] = useState('')
+
+
     const addBlog = (event) => {
         event.preventDefault()
 
@@ -13,39 +15,54 @@ const BlogForm = ({createBlog}) => {
             author: author,
             url: url,
             likes: 0,
+            user: user
+
 
         })
+        setTitle('')
+        setAuthor('')
+        setUrl('')
+
 
     }
+
+
     return(
         <div>
 
-    <form onSubmit={addBlog}>
-        <div>
+            <form onSubmit={addBlog}>
+                <div>
             title
-            <input
-                value={title}
-                onChange={({target}) => setTitle(target.value)}
-            />
-        </div>
-        <div>
+                    <input
+                        id='title'
+                        value={title}
+                        onChange={({ target }) => setTitle(target.value)}
+                        placeholder='write title'
+                    />
+                </div>
+                <div>
             author
-            <input
-                value={author}
-                onChange={({target}) => setAuthor(target.value)}
-            />
-        </div>
-        <div>
+                    <input
+                        id='author'
+                        value={author}
+                        onChange={({ target }) => setAuthor(target.value)}
+                        placeholder='write author'
+                    />
+                </div>
+                <div>
             url
-            <input
-                value={url}
-                onChange={({target}) => setUrl(target.value)}
-            />
-        </div>
+                    <input
+                        id='url'
+                        value={url}
+                        onChange={({ target }) => setUrl(target.value)}
+                        placeholder='write url'
+                    />
+                </div>
 
 
-        <button type="submit">save</button>
-    </form>
+                <button id='save-button' type="submit">save</button>
+
+            </form>
         </div>
     )
 }
